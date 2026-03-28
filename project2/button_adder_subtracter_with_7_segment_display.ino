@@ -4,7 +4,7 @@
 //  Personal Project 2: button adder and subtracter
 //
 //the goal of this code is to a functional counter that adds and subtracts depending on what button you press
-// There are two buttons one that is specifially for adding 1, and one for subtracting 1
+// There are three buttons one that is specifially for adding 1, one for subtracting 1, and one that resets the display back to 0
 // when a button is pressed the display will update depending on what the num varibale is at the time
 // to make sure that is getting configured correctly the there is a print in function to make sure that it is being added correctly
 //
@@ -44,9 +44,12 @@ const int segmentPins[7] = {a, b, c, d, e, f, g};
 
 #define BUTTON_PIN_1 33
 #define BUTTON_PIN_2 32
+#define BUTTON_PIN_3 23
+
 
 ezButton button1(BUTTON_PIN_1);
 ezButton button2(BUTTON_PIN_2);
+ezButton button3(BUTTON_PIN_3);
 
 
 int num = 0;
@@ -62,9 +65,13 @@ void setup() {
 
   pinMode(BUTTON_PIN_1, INPUT_PULLUP);
   pinMode(BUTTON_PIN_2, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_3, INPUT_PULLUP);
+
 
   button1.setDebounceTime(100);
   button2.setDebounceTime(100);
+    button3.setDebounceTime(100);
+
 
     for (int i = 0; i < 7; i++) {
     pinMode(segmentPins[i], OUTPUT);
@@ -78,6 +85,7 @@ void loop() {
 
   button1.loop();
   button2.loop();
+  button3.loop();
 
 
   if (button1.isPressed()) {
@@ -108,5 +116,16 @@ void loop() {
 
   if (button2.isReleased()) {
     Serial.println("Button 2 released");
+  }
+
+    if (button3.isPressed()) {
+    Serial.println("Button 3 pressed");
+     num = 0;
+    displayDigit(num);
+    Serial.println(num);
+  }
+
+    if (button3.isReleased()) {
+    Serial.println("Button 3 released");
   }
 }
