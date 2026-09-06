@@ -1,7 +1,7 @@
       //
       // Jolene Michel
       // start date 5/8/26
-      // end date 
+      // end date 6/05/26
       //  Personal project: 3
       //
       // the goal of the project is to create a functional mp3 player using an esp32 microcontroller. In order to do this the main part of the code is the state machine. 
